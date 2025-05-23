@@ -1,0 +1,104 @@
+---
+const services = [
+  {
+    id: 'installation',
+    title: 'Garage Door Installation',
+    description: 'Expert installation of new garage doors tailored to your specific needs and preferences. We offer a wide selection of styles, materials, and features.',
+    icon: 'tools',
+    image: 'https://images.pexels.com/photos/8961746/pexels-photo-8961746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  },
+  {
+    id: 'repair',
+    title: 'Garage Door Repair',
+    description: 'Quick and reliable repair services for all garage door issues, including bent tracks, broken springs, malfunctioning openers, and damaged panels.',
+    icon: 'tool',
+    image: 'https://images.pexels.com/photos/6824699/pexels-photo-6824699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  },
+  {
+    id: 'maintenance',
+    title: 'Preventative Maintenance',
+    description: 'Regular maintenance to ensure optimal performance and longevity of your garage door. We check all components and make necessary adjustments.',
+    icon: 'check-circle',
+    image: 'https://images.pexels.com/photos/8962043/pexels-photo-8962043.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  },
+  {
+    id: 'emergency',
+    title: '24/7 Emergency Service',
+    description: "Available around the clock for urgent garage door repairs. When your garage door fails, we're just a phone call away, ready to help.",
+    icon: 'alert-circle',
+    image: 'https://images.pexels.com/photos/9825458/pexels-photo-9825458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  }
+];
+
+// For icons, using feather icons format
+const getIcon = (name) => {
+  switch(name) {
+    case 'tools':
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`;
+    case 'tool':
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.4 20a6.96 6.96 0 0 0 3.44-2.06 7.02 7.02 0 0 0 1.5-2.35 7.01 7.01 0 0 0-4.7-9.33 6.98 6.98 0 0 0-5.63 1.03 7.01 7.01 0 0 0-2.82 8.11 6.97 6.97 0 0 0 2.5 3.23 7.08 7.08 0 0 0 4.47 1.37z"></path><path d="M12.47 17.47 8.7 21.23a1 1 0 0 1-1.4 0l-2.36-2.36a1 1 0 0 1 0-1.4l3.77-3.77"></path></svg>`;
+    case 'check-circle':
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+    case 'alert-circle':
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+    default:
+      return '';
+  }
+};
+---
+
+<section id="services" class="section bg-gray-50">
+  <div class="container-custom">
+    <div class="section-title animate-on-scroll">
+      <h2>Our Services</h2>
+      <p class="max-w-2xl mx-auto text-center text-gray-600">We provide comprehensive garage door solutions for both residential and commercial properties, ensuring safety, functionality, and aesthetic appeal.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 mt-12">
+      {services.map((service, index) => (
+        <div class={`service-card animate-on-scroll group ${index % 2 === 0 ? 'md:translate-y-8' : ''}`}>
+          <div class="flex flex-col h-full">
+            <div class="relative h-48 mb-4 overflow-hidden rounded-t-lg">
+              <img 
+                src={service.image} 
+                alt={service.title}
+                class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white font-bold text-xl">{service.title}</div>
+            </div>
+            
+            <div class="flex-1 p-2">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary-100 text-primary-600 rounded-lg">
+                  <Fragment set:html={getIcon(service.icon)} />
+                </div>
+                <h3 class="ml-4 text-xl font-semibold">{service.title}</h3>
+              </div>
+              
+              <p class="text-gray-600 mb-6">{service.description}</p>
+              
+              <a href={`/#${service.id}`} class="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors">
+                Learn More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-16 text-center animate-on-scroll">
+      <a href="#contact" class="btn-primary">
+        <span class="flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+          </svg>
+          Schedule a Service
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

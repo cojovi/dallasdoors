@@ -1,0 +1,32 @@
+---
+const areas = [
+  'Dallas', 'Fort Worth', 'Plano', 'Frisco', 'Arlington', 
+  'Irving', 'Garland', 'McKinney', 'Richardson', 'Lewisville',
+  'Allen', 'Carrollton', 'Denton', 'Mesquite', 'Grand Prairie'
+];
+---
+
+<section class="section bg-white">
+  <div class="container-custom">
+    <div class="section-title animate-on-scroll">
+      <h2>Areas We Serve</h2>
+      <p class="max-w-2xl mx-auto text-center text-gray-600">Dallas Door Pros provides service throughout the Dallas-Fort Worth metroplex. Here are some of the areas we cover:</p>
+    </div>
+    
+    <div class="mt-12 animate-on-scroll">
+      <div class="bg-gray-50 rounded-lg p-8 border border-gray-100">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {areas.map((area) => (
+            <div class="bg-white rounded-md shadow-sm py-3 px-4 text-center hover:shadow-md transition-shadow">
+              <span class="font-medium text-gray-800">{area}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <p class="text-gray-600">Don't see your location? <a href="#contact" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">Contact us</a> to see if we serve your area.</p>
+      </div>
+    </div>
+  </div>
+</section>

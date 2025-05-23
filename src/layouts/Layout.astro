@@ -1,0 +1,108 @@
+---
+import { SEO } from 'astro-seo';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title = 'Dallas Door Pros | Expert Garage Door Services in Dallas', 
+  description = 'Dallas Door Pros offers professional garage door installation, repair, and maintenance services in Dallas and surrounding areas. Available 24/7 for emergency services.',
+  image = '/images/og-image.jpg'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: image,
+        }
+      }}
+      twitter={{
+        creator: '@dallasdoorpros'
+      }}
+      extend={{
+        meta: [
+          { name: 'theme-color', content: '#0072c7' },
+          { name: 'twitter:title', content: title },
+          { name: 'twitter:description', content: description },
+        ],
+        link: [
+          { rel: 'canonical', href: Astro.url.href }
+        ],
+      }}
+    />
+  </head>
+  <body class="bg-white text-gray-800 overflow-x-hidden">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Intersection Observer for fade-in animations
+      document.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-in');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(element => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
