@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const blogs = [
+  { title: 'Case Study: Transforming a Dallas Business with a Custom Garage Door Solution', slug: 'case-study--transforming-a-dallas-business-with-a-custom-garage-door-solution.html' },
+  { title: 'Case Study: Transforming Homes with Stylish Garage Door Installations', slug: 'case-study--transforming-homes-with-stylish-garage-door-installations.html' },
+  { title: 'Debunking Myths About Garage Door Maintenance', slug: 'debunking-myths-about-garage-door-maintenance.html' },
+  { title: 'DIY Garage Door Maintenance Tips: Keep Your Dallas Door Running Smoothly', slug: 'diy-garage-door-maintenance-tips--keep-your-dallas-door-running-smoothly.html' },
+  { title: "Emergency Garage Door Repairs: What to Do When Your Door Won't Open", slug: 'emergency-garage-door-repairs--what-to-do-when-your-door-won-t-open.html' },
+  { title: 'How Often Should You Service Your Commercial Overhead Doors?', slug: 'how-often-should-you-service-your-commercial-overhead-doors-.html' },
+  { title: 'Misconceptions About Garage Door Repairs: Debunking Common Myths', slug: 'misconceptions-about-garage-door-repairs--debunking-common-myths.html' },
+  { title: 'Seasonal Garage Door Maintenance Tips for Dallas Homeowners', slug: 'seasonal-garage-door-maintenance-tips-for-dallas-homeowners.html' },
+  { title: 'The Ultimate Guide to Affordable Garage Door Services in Dallas', slug: 'the-ultimate-guide-to-affordable-garage-door-services-in-dallas.html' },
+  { title: 'The Ultimate Guide to Garage Door Repair in Dallas: What Homeowners Need to Know', slug: 'the-ultimate-guide-to-garage-door-repair-in-dallas--what-homeowners-need-to-know.html' },
+  { title: 'Top 5 Signs Your Garage Door Needs Professional Repair', slug: 'top-5-signs-your-garage-door-needs-professional-repair.html' }
+];
+---
+
+<Layout title="Our Blog | Dallas Door Pros" description="Garage door tips, case studies, and maintenance advice.">
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="section-title animate-on-scroll">
+        <h1 class="text-4xl font-bold mb-4">Our Blog</h1>
+        <p class="max-w-2xl mx-auto text-center text-gray-600">Explore our latest articles and case studies.</p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-12">
+        {blogs.map(blog => (
+          <div class="card hover:shadow-lg hover:-translate-y-1 animate-on-scroll">
+            <h3 class="text-xl font-bold mb-3">{blog.title}</h3>
+            <a href={`/blog/${blog.slug}`} class="text-primary-600 font-medium hover:underline flex items-center">
+              Read More
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
